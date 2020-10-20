@@ -1095,16 +1095,16 @@
 //         let offset := calldataload(add(headStart, 64))
 //         let _1 := 0xffffffffffffffff
 //         if gt(offset, _1) { revert(value4, value4) }
-//         let _2 := add(headStart, offset)
-//         if iszero(slt(add(_2, 0x1f), dataEnd)) { revert(value4, value4) }
-//         let length := calldataload(_2)
+//         let offset_1 := add(headStart, offset)
+//         if iszero(slt(add(offset_1, 0x1f), dataEnd)) { revert(value4, value4) }
+//         let length := calldataload(offset_1)
 //         if gt(length, _1) { revert(value4, value4) }
-//         if gt(add(add(_2, length), 32), dataEnd) { revert(value4, value4) }
-//         value2 := add(_2, 32)
+//         if gt(add(add(offset_1, length), 32), dataEnd) { revert(value4, value4) }
+//         value2 := add(offset_1, 32)
 //         value3 := length
-//         let _3 := calldataload(add(headStart, 96))
-//         if iszero(lt(_3, 3)) { revert(value4, value4) }
-//         value4 := _3
+//         let _2 := calldataload(add(headStart, 96))
+//         if iszero(lt(_2, 3)) { revert(value4, value4) }
+//         value4 := _2
 //     }
 //     function abi_encode_bytes32_t_address_t_uint256_t_bytes32_t_enum$_Operation_t_uint256_t_uint256_t_uint256_t_address_t_address_t_uint(headStart, value10, value9, value8, value7, value6, value5, value4, value3, value2, value1, value0) -> tail
 //     {

@@ -1,1 +1,1 @@
-{"sources":{"A":{"id":0}}}
+{"errors":[{"component":"general","formattedMessage":"Unknown key \"modelCheckerSettings\"","message":"Unknown key \"modelCheckerSettings\"","severity":"error","type":"JSONError"}]}

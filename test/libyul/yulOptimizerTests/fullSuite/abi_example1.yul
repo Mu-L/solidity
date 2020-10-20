@@ -473,9 +473,9 @@
 //         let i := _1
 //         for { } lt(i, length) { i := add(i, 1) }
 //         {
-//             let _3 := mload(srcPtr)
+//             let value := mload(srcPtr)
 //             let pos_1 := pos
-//             let srcPtr_1 := _3
+//             let srcPtr_1 := value
 //             let i_1 := _1
 //             for { } lt(i_1, 0x3) { i_1 := add(i_1, 1) }
 //             {
@@ -534,15 +534,15 @@
 //         let offset := calldataload(add(headStart, 64))
 //         let _2 := 0xffffffffffffffff
 //         if gt(offset, _2) { revert(value2, value2) }
-//         let _3 := add(headStart, offset)
-//         if iszero(slt(add(_3, 0x1f), dataEnd)) { revert(value2, value2) }
-//         let length := calldataload(_3)
+//         let offset_1 := add(headStart, offset)
+//         if iszero(slt(add(offset_1, 0x1f), dataEnd)) { revert(value2, value2) }
+//         let length := calldataload(offset_1)
 //         let dst := allocateMemory(array_allocation_size_t_array$_t_address_$dyn_memory(length))
 //         let dst_1 := dst
 //         mstore(dst, length)
 //         dst := add(dst, _1)
-//         let src := add(_3, _1)
-//         if gt(add(add(_3, mul(length, _1)), _1), dataEnd) { revert(value2, value2) }
+//         let src := add(offset_1, _1)
+//         if gt(add(add(offset_1, mul(length, _1)), _1), dataEnd) { revert(value2, value2) }
 //         let i := value2
 //         for { } lt(i, length) { i := add(i, 1) }
 //         {
@@ -551,9 +551,9 @@
 //             src := add(src, _1)
 //         }
 //         value2 := dst_1
-//         let offset_1 := calldataload(add(headStart, 96))
-//         if gt(offset_1, _2) { revert(value3, value3) }
-//         value3 := abi_decode_t_array$_t_array$_t_uint256_memory_$dyn(add(headStart, offset_1), dataEnd)
+//         let offset_2 := calldataload(add(headStart, 96))
+//         if gt(offset_2, _2) { revert(value3, value3) }
+//         value3 := abi_decode_t_array$_t_array$_t_uint256_memory_$dyn(add(headStart, offset_2), dataEnd)
 //     }
 //     function allocateMemory(size) -> memPtr
 //     {
