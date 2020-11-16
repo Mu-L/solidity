@@ -43,33 +43,34 @@ class TypeChecker;
 class ConstantEvaluator: private ASTConstVisitor
 {
 public:
-	ConstantEvaluator(
-		langutil::ErrorReporter& _errorReporter,
-		size_t _newDepth = 0,
-		std::shared_ptr<std::map<ASTNode const*, TypePointer>> _types = std::make_shared<std::map<ASTNode const*, TypePointer>>()
-	):
-		m_errorReporter(_errorReporter),
-		m_depth(_newDepth),
-		m_types(std::move(_types))
+	struct TypedRational
 	{
-	}
+		// TODO for RationalNumberType the value is redundant.
+		TypePointer type;
+		rational value;
+	};
 
-	TypePointer evaluate(Expression const& _expr);
+	static std::optional<TypedRational> evaluate(
+		langutil::ErrorReporter& _errorReporter,
+		Expression const& _expr
+	);
 
 private:
+	explicit ConstantEvaluator(langutil::ErrorReporter& _errorReporter): m_errorReporter(_errorReporter) {}
+
+	std::optional<TypedRational> evaluate(ASTNode const& _node);
+
 	void endVisit(BinaryOperation const& _operation) override;
 	void endVisit(UnaryOperation const& _operation) override;
 	void endVisit(Literal const& _literal) override;
 	void endVisit(Identifier const& _identifier) override;
 	void endVisit(TupleExpression const& _tuple) override;
 
-	void setType(ASTNode const& _node, TypePointer const& _type);
-	TypePointer type(ASTNode const& _node);
-
 	langutil::ErrorReporter& m_errorReporter;
 	/// Current recursion depth.
 	size_t m_depth = 0;
-	std::shared_ptr<std::map<ASTNode const*, TypePointer>> m_types;
+	/// Values of sub-expressions and variable declarations.
+	std::map<ASTNode const*, std::optional<TypedRational>> m_values;
 };
 
 }
